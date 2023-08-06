@@ -9,5 +9,5 @@ class RedirectCommand(Command):
         self.new_module = new_module_name
 
     def execute(self):
-        module_change_event = pygame.event.Event(MANAGER_CHANGE_EVENT, custom_attribute=self.new_module)
+        module_change_event = pygame.event.Event(DATASTRUCT_CHANGE_EVENT, custom_attribute=self.new_module)
         pygame.event.post(module_change_event)
