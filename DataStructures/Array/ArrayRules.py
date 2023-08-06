@@ -1,7 +1,8 @@
+from DataStructures.DataStructureRules import DataStructureRules
 from abc import abstractmethod
 
 
-class ArrayRules:
+class ArrayRules(DataStructureRules):
     def __init__(self, size: int):
         self._elements = []
         self._size = size

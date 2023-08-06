@@ -20,6 +20,7 @@ class Module:
                 if event.type == pygame.QUIT:
                     run = False
                 elif event.type == DATASTRUCT_CHANGE_EVENT:
+                    print(event.custom_attribute)
                     self.__manager, self.__window = self.__factory.produce(event.custom_attribute)
 
                 self.__manager.update_statuses(event, pygame.mouse.get_pos())
