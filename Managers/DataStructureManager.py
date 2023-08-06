@@ -35,7 +35,7 @@ class DataStructureManager(UIManager):
     def _init_components(self):
         pass
 
-    def _update_actionable(self, event: pygame.event.Event, mouse_pos: tuple[int, int]) -> None:
+    def update_statuses(self, event: pygame.event.Event, mouse_pos: tuple[int, int]) -> None:
         super().update_statuses(event, mouse_pos)
         if event.type == pygame.MOUSEBUTTONDOWN:
             self._display_box.reset_text()
