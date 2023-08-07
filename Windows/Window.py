@@ -27,5 +27,3 @@ class Window(ABC):
 
         for ui_element in ui_elements:
             ui_element.draw(self._win)
-
-        pygame.display.update()

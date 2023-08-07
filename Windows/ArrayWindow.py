@@ -1,6 +1,7 @@
 from Windows.DataStructureWindow import DataStructureWindow
 import pygame
 from ReusablePygameGUIControls.Colors.ColorConstants import *
+from NonReusablePygameGUI.ArrayBlock import ArrayBlock
 
 
 class ArrayWindow(DataStructureWindow):
@@ -13,13 +14,9 @@ class ArrayWindow(DataStructureWindow):
         self.__start_y = None
         self.__additional_lines_x = None
 
-    @property
-    def array_size(self):
-        return self.__array_size
-
-    @array_size.setter
-    def array_size(self, new_size: int):
-        self.__array_size = new_size
+    def accept_rules(self, args: tuple):
+        self.__array_size, self._elements = args
+        self.calculate_drawing_parameters()
 
     def calculate_drawing_parameters(self):
         start_block_side = 100
@@ -30,18 +27,22 @@ class ArrayWindow(DataStructureWindow):
                                                      self.__array_size) // 2
         start_y = DataStructureWindow.workspace_y + (DataStructureWindow.workspace_height - start_block_side) // 2
 
+        self.__block_size = start_block_side
+        self.__start_x = start_x
+        self.__start_y = start_y
+
         if self._elements:
             self.__additional_lines_x = self._elements[-1].x + self.__block_size
         else:
             self.__additional_lines_x = self.__start_x + 10
 
-        self.__block_size = start_block_side
-        self.__start_x = start_x
-        self.__start_y = start_y
+    def _init_building_blocks(self, elements: list):
+        self._elements.clear()
+        for i, block_val in enumerate(elements):
+            self._elements.append(ArrayBlock(self.__start_x + i * self.__block_size, self.__start_y,
+                                             self.__block_size, self.__block_size, block_val))
 
     def _draw_unique_details(self):
-        super()._draw_unique_details()
-
         pygame.draw.line(self._win, BLACK, (DataStructureWindow.workspace_x, self.__start_y),
                          (DataStructureWindow.workspace_x + DataStructureWindow.workspace_width, self.__start_y), 3)
         pygame.draw.line(self._win, BLACK, (DataStructureWindow.workspace_x, self.__start_y + self.__block_size - 1),

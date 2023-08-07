@@ -1,6 +1,6 @@
 from Managers.UIManager import UIManager
 from ReusablePygameGUIControls.TextDisplay import TextDisplay
-from ReusablePygameGUIControls.Button import Button
+from ReusablePygameGUIControls.CommandButton import CommandButton
 from ReusablePygameGUIControls.Colors.ColorConstants import *
 from PygameExtensions.Fonts import *
 from Constants.ScreenConstants import *
@@ -33,6 +33,6 @@ class MainMenuManager(UIManager):
         for i in range(len(buttons_text)):
             button_x = start_gap_x + (gap_x + button_width) * (i % 4)
             button_y = start_gap_y + (gap_y + button_height) * (i // 4)
-            b = Button(button_x, button_y + 100, button_width, button_height, GREY, buttons_text[i],
-                       BLACK, font25, None, RedirectCommand(buttons_text[i].replace(' ', '_')))
+            b = CommandButton(button_x, button_y + 100, button_width, button_height, GREY, buttons_text[i],
+                              BLACK, font25, None, RedirectCommand(buttons_text[i].replace(' ', '_')))
             self._actionable.append(b)
