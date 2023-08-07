@@ -5,16 +5,19 @@ from DataStructures.MethodFactory import MethodFactory
 
 class ArrayMethodFactory(MethodFactory):
 
-    def produce(self, method: str, rules: ArrayRules) -> Callable:
+    def __init__(self, rules: 'ArrayRules'):
+        super().__init__(rules)
+
+    def produce(self, method: str) -> Callable:
         if method == 'append':
-            return rules.append
+            return self._rules.append
         elif method == 'bubble':
-            return rules.bubble_sort
+            return self._rules.bubble_sort
         elif method == 'insertion':
-            return rules.insertion_sort
+            return self._rules.insertion_sort
         elif method == 'sort':
-            return rules.sorting_alg
+            return self._rules.sorting_alg
         elif method == 'insert':
-            return rules.insert_at
+            return self._rules.insert_at
         elif method == 'delete':
-            return rules.delete_at
+            return self._rules.delete_at

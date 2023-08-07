@@ -39,3 +39,7 @@ class DataStructureWindow(Window):
     @abstractmethod
     def accept_rules(self, args: tuple):
         pass
+
+    @abstractmethod
+    def animation(self, instruction: dict):
+        pass

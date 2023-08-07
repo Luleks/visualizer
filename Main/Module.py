@@ -23,6 +23,8 @@ class Module:
                     self.__manager, self.__window, self.__synchronizer = self.__factory.produce(event.custom_attribute)
                 elif event.type == SETTINGS_CHANGED_EVENT:
                     self.__synchronizer.synchronize()
+                elif event.type == ANIMATION_EVENT:
+                    self.__synchronizer.animation(event.generator)
 
                 self.__manager.update_statuses(event, pygame.mouse.get_pos())
 

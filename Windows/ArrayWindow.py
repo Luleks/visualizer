@@ -53,3 +53,5 @@ class ArrayWindow(DataStructureWindow):
             pygame.draw.line(self._win, BLACK, (self.__additional_lines_x + self.__block_size * i, self.__start_y),
                              (self.__additional_lines_x + self.__block_size * i, self.__start_y + self.__block_size), 3)
 
+    def animation(self, instruction: dict):
+        pass
