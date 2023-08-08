@@ -39,7 +39,7 @@ class InputForm(UIElement, IActionable):
                 self._text += event.unicode
 
     def __change_text_for_displaying(self) -> None:
-        if self._active and self._text == self.__default_text:
+        if self._active:
             self._text = ''
         elif not self._active and self._text == '':
             self._text = self.__default_text

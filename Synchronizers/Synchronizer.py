@@ -23,6 +23,8 @@ class Synchronizer:
                 self._manager.msg_display = instruction.get('exception')
             elif not instruction.get('end'):
                 pygame.event.post(pygame.event.Event(ANIMATION_EVENT, generator=generator))
+            elif instruction.get('end'):
+                self._manager.msg_display = instruction.get('end')
             self._window.accept_rules(self._manager.pack_rules())
             self._window.animation(instruction)
         except Exception as ec:

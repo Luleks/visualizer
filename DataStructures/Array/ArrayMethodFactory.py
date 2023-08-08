@@ -21,3 +21,7 @@ class ArrayMethodFactory(MethodFactory):
             return self._rules.insert_at
         elif method == 'delete':
             return self._rules.delete_at
+        elif method == 'linear':
+            return self._rules.linear_search
+        elif method == 'binary':
+            return self._rules.binary_search

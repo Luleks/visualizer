@@ -62,3 +62,10 @@ class ArrayWindow(DataStructureWindow):
         if elements := instruction.get('elements'):
             self._init_building_blocks(elements)
             self.calculate_drawing_parameters()
+            pygame.time.delay(500)
+        elif index := instruction.get('index'):
+            for element in self._elements:
+                element.red = False
+            for ind in index:
+                self._elements[ind].red = True
+            pygame.time.delay(500)

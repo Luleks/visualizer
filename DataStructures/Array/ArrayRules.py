@@ -57,19 +57,19 @@ class ArrayRules(DataStructureRules):
             yield {'elements': self._elements}
         self._elements.pop()
 
-        yield {'ret_val': deleted_element}
-        yield {'end': True}
+        yield {'end': f'Deleted element: {deleted_element}'}
 
     def linear_search(self, value: int):
         i: int = 0
         while i < len(self._elements) and self._elements[i] != value:
-            i += 1
             yield {'index': [i]}
+            i += 1
         if i == len(self._elements):
             yield {'index': [-1]}
+            yield {'end': f'Element {value} not found'}
         else:
             yield {'index': [i]}
-        yield {'end': True}
+            yield {'end': f'Element {value} found at index {i}'}
 
     def binary_search(self, value: int):
         if not self._elements:
@@ -90,18 +90,19 @@ class ArrayRules(DataStructureRules):
 
             if self._elements[middle] == value:
                 yield {'index': [middle]}
+                yield {'end': f'Element {value} found at index {middle}'}
             else:
                 yield {'index': [-1]}
-        yield {'end': True}
+                yield {'end': f'Element {value} not fount'}
 
     def bubble_sort(self):
         for i in range(len(self._elements) - 1, 0, -1):
             for j in range(0, i):
-                yield {'index': [i, j]}
+                yield {'index': [j, j+1]}
                 if self._elements[j] >= self._elements[j + 1]:
                     self._elements[j], self._elements[j + 1] = self._elements[j + 1], self._elements[j]
                     yield {'elements': self._elements}
-        yield {'end': True}
+        yield {'end': 'Et voila'}
 
     def selection_sort(self):
         for i in range(len(self._elements) - 1):
@@ -113,7 +114,7 @@ class ArrayRules(DataStructureRules):
 
             self._elements[i], self._elements[i_min] = self._elements[i_min], self._elements[i]
             yield {'elements': self._elements}
-        yield {'end': True}
+        yield {'end': 'Et voila'}
 
     def insertion_sort(self):
         for i in range(1, len(self._elements)):
@@ -126,7 +127,7 @@ class ArrayRules(DataStructureRules):
                 yield {'elements': self._elements}
             self._elements[j + 1] = temp
             yield {'elements': self._elements}
-        yield {'end': True}
+        yield {'end': 'Et voila'}
 
     def __repr__(self):
         return f'{self.__class__.__name__} {self.size} {self.sorting_alg}'

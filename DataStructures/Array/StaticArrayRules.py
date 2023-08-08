@@ -12,7 +12,7 @@ class StaticArrayRules(ArrayRules):
             raise IndexError("Static array overflow")
         self._elements.append(new_element)
         yield {'elements': self._elements}
-        yield {'end': True}
+        yield {'end': 'Element added to list'}
 
     def insert_at(self, index: int, value: int):
         if index > len(self._elements) or index < 0:
@@ -24,4 +24,4 @@ class StaticArrayRules(ArrayRules):
             self._elements[i] = self._elements[i - 1]
             yield {'elements': self._elements}
         self._elements[index] = value
-        yield {'end': True}
+        yield {'end': f'Element inserted at index {index}'}
