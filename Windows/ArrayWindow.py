@@ -15,8 +15,13 @@ class ArrayWindow(DataStructureWindow):
         self.__additional_lines_x = None
 
     def accept_rules(self, args: tuple):
-        self.__array_size, self._elements = args
+        self.__array_size = args[0]
         self.calculate_drawing_parameters()
+        self.elements = args[1]
+        if self._elements:
+            self.__additional_lines_x = self._elements[-1].x + self.__block_size
+        else:
+            self.__additional_lines_x = self.__start_x
 
     def calculate_drawing_parameters(self):
         start_block_side = 100
@@ -34,7 +39,7 @@ class ArrayWindow(DataStructureWindow):
         if self._elements:
             self.__additional_lines_x = self._elements[-1].x + self.__block_size
         else:
-            self.__additional_lines_x = self.__start_x + 10
+            self.__additional_lines_x = self.__start_x
 
     def _init_building_blocks(self, elements: list):
         self._elements.clear()
@@ -54,4 +59,6 @@ class ArrayWindow(DataStructureWindow):
                              (self.__additional_lines_x + self.__block_size * i, self.__start_y + self.__block_size), 3)
 
     def animation(self, instruction: dict):
-        pass
+        if elements := instruction.get('elements'):
+            self._init_building_blocks(elements)
+            self.calculate_drawing_parameters()

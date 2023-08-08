@@ -33,11 +33,11 @@ class ArrayRules(DataStructureRules):
     @sorting_alg.setter
     def sorting_alg(self, value: str):
         if value == 'Bubble':
-            self._sorting_alg = self.bubble_sort()
+            self._sorting_alg = self.bubble_sort
         elif value == 'Selection':
-            self._sorting_alg = self.selection_sort()
+            self._sorting_alg = self.selection_sort
         else:
-            self._sorting_alg = self.insertion_sort()
+            self._sorting_alg = self.insertion_sort
 
     @abstractmethod
     def append(self, new_element: int) -> None:

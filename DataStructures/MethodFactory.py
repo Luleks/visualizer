@@ -6,15 +6,15 @@ from DataStructures.DataStructureRules import DataStructureRules
 class MethodFactory(ABC):
 
     def __init__(self, rules: DataStructureRules):
-        self.__rules = rules
+        self._rules = rules
 
     @property
     def rules(self):
-        return self.__rules
+        return self._rules
 
     @rules.setter
     def rules(self, new_rules: DataStructureRules):
-        self.__rules = new_rules
+        self._rules = new_rules
 
     @abstractmethod
     def produce(self, method: str) -> Callable:

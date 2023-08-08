@@ -5,7 +5,7 @@ from DataStructures.MethodFactory import MethodFactory
 
 class ArrayMethodFactory(MethodFactory):
 
-    def __init__(self, rules: 'ArrayRules'):
+    def __init__(self, rules: ArrayRules):
         super().__init__(rules)
 
     def produce(self, method: str) -> Callable:

@@ -28,14 +28,26 @@ class DataStructureManager(UIManager):
         self._name = manager_name
         self._settings_path = settings_exe_path
         self._rules: DataStructureRules | None = None
-        self._method_factory: MethodFactory | None = None
 
         self.load_rules()
+        self._method_factory: MethodFactory = self._get_factory()
 
         super().__init__()
         self.__initialize_common_controls()
         self._display_box = TextDisplay(140, 140, 920, 50, GREY, '', WHITE, font25, None)
         self._text_displays.append(self._display_box)
+
+    @property
+    def msg_display(self):
+        return self._display_box
+
+    @msg_display.setter
+    def msg_display(self, text):
+        self._display_box.change_text(text)
+
+    @abstractmethod
+    def _get_factory(self) -> MethodFactory:
+        pass
 
     @abstractmethod
     def pack_rules(self):

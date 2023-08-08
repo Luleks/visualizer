@@ -3,6 +3,8 @@ from ReusablePygameGUIControls.InputForm import InputForm
 import pygame
 from DataStructures.MethodFactory import MethodFactory
 from Commands.MethodCommand import MethodCommand
+from PygameExtensions.CustomEvents import ANIMATION_EVENT
+from DataStructures.ExceptionGenerator import *
 pygame.font.init()
 
 
@@ -22,5 +24,8 @@ class CallableButton(Button):
         super().shift_color(mouse_pos)
         if event.type == pygame.MOUSEBUTTONDOWN and super()._is_over(mouse_pos):
             method = self.method_factory.produce(self.callable)
-            command = MethodCommand(method, self.sources, self.data_type)
-            command.execute()
+            try:
+                command = MethodCommand(method, self.sources, self.data_type)
+                command.execute()
+            except ValueError as ec:
+                pygame.event.post(pygame.event.Event(ANIMATION_EVENT, generator=exception_generator(str(ec))))

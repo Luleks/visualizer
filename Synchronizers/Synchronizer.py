@@ -14,12 +14,16 @@ class Synchronizer:
     def synchronize(self):
         self._manager.load_rules()
         self._window.accept_rules(self._manager.pack_rules())
+        self._manager._method_factory.rules = self._manager._rules
 
     def animation(self, generator):
         try:
             instruction: dict = next(generator)
-            if not instruction.get('end'):
+            if instruction.get('exception'):
+                self._manager.msg_display = instruction.get('exception')
+            elif not instruction.get('end'):
                 pygame.event.post(pygame.event.Event(ANIMATION_EVENT, generator=generator))
-                self._window.animation(instruction)
+            self._window.accept_rules(self._manager.pack_rules())
+            self._window.animation(instruction)
         except Exception as ec:
-            print(ec.args)
+            self._manager.msg_display = str(ec)

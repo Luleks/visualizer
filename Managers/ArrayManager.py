@@ -18,7 +18,9 @@ class ArrayManager(DataStructureManager):
 
     def __init__(self):
         super().__init__('Array', r'ArraySettings')
-        self._method_factory: ArrayMethodFactory = ArrayMethodFactory(self._rules)
+
+    def _get_factory(self) -> ArrayMethodFactory:
+        return ArrayMethodFactory(self._rules)
 
     def _init_components(self):
         #  Creating left column of controls

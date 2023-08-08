@@ -5,7 +5,6 @@ class StaticArrayRules(ArrayRules):
 
     def __init__(self):
         super().__init__(4)
-        self._elements = []
         self.sorting_alg = self.bubble_sort
 
     def append(self, new_element: int) -> None:
@@ -25,3 +24,4 @@ class StaticArrayRules(ArrayRules):
             self._elements[i] = self._elements[i - 1]
             yield {'elements': self._elements}
         self._elements[index] = value
+        yield {'end': True}
